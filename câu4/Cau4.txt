@@ -1,0 +1,17 @@
+Một game phòng thủ tháp cần lập trình cho cung thủ đứng trên tháp luôn luôn bắn trúng địch trong tầm bắn.						
+Địch thì di chuyển theo một quỹ đạo ngẫu nhiên						
+Mũi tên thì di chuyển tuân theo trọng lực.						
+Hỏi có cách nào lập trình mũi tên di chuyển đảm bảo tất cả yêu cầu trên không? nếu có thì cách đó là gì?						
+Nếu không có thì có cách nào gần thoả mãn các yêu cầu nói trên nhất?						
+có ,
+ ta có thể làm theo 1 số các sau để gần thoả mãn các yêu cầu nói trên nhất :
+
+ - ta làm theo cách là cho mũi tên hiệu ứng homing với góc quay rất nhỏ 
+
+ - tằng tốc độ của mũi tên 
+
+ - tạo tầm quết cho tháp bắng , tầm quét sẽ xa hơn tầm bắng 1 khoản , khi định bước vào tầm này sẽ gắn cho kẻ định 1 hàm dự đoán hướng di chuyển 
+
+ - khi bước vào phạm vi bắn mũi tên sẽ bắn vào vị trí thích hợp để khi địch có di chuyển ngoài dự tính thì hiệu ứng homing sẽ sử lí mượt mà không để lộ 
+
+(có thể thêm chứng ngại vật , hay vũ lầy làm chậm để giảm tốc độ của địch )

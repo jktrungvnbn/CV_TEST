@@ -1,0 +1,58 @@
+// Hàm chính của thuật toán A*
+AStarSearch(startNode, goalNode)
+    // Tập hợp các nút đã được khám phá và cần được đánh giá
+    openSet = PriorityQueue()
+    openSet.add(startNode, 0)
+    
+    // Bản đồ theo dõi các nút đã đến
+    cameFrom = empty map
+    
+    // Bản đồ theo dõi chi phí từ nút bắt đầu đến mỗi nút
+    gScore = map with default value of Infinity
+    gScore[startNode] = 0
+    
+    // Bản đồ theo dõi chi phí dự kiến từ nút bắt đầu đến đích thông qua mỗi nút
+    fScore = map with default value of Infinity
+    fScore[startNode] = heuristic(startNode, goalNode)
+    
+    while not openSet.isEmpty()
+        // Lấy nút có fScore nhỏ nhất từ openSet
+        current = openSet.pop()
+        
+        // Nếu nút hiện tại là đích, tái tạo và trả về đường đi
+        if current == goalNode
+            return reconstructPath(cameFrom, current)
+        
+        // Đánh giá các nút hàng xóm của nút hiện tại
+        for neighbor in current.neighbors
+            tentative_gScore = gScore[current] + distance(current, neighbor)
+            
+            if tentative_gScore < gScore[neighbor]
+                // Nút này là đường đi tốt hơn
+                cameFrom[neighbor] = current
+                gScore[neighbor] = tentative_gScore
+                fScore[neighbor] = gScore[neighbor] + heuristic(neighbor, goalNode)
+                
+                if neighbor not in openSet
+                    openSet.add(neighbor, fScore[neighbor])
+    
+    // Trả về thất bại nếu không tìm thấy đường đi
+    return failure
+
+// Hàm tái tạo đường đi từ nút bắt đầu đến đích
+reconstructPath(cameFrom, current)
+    totalPath = [current]
+    while current in cameFrom
+        current = cameFrom[current]
+        totalPath.prepend(current)
+    return totalPath
+
+// Hàm ước lượng chi phí (heuristic) từ nút hiện tại đến đích
+heuristic(node, goal)
+    // Có thể sử dụng nhiều heuristic khác nhau, ví dụ Manhattan distance hoặc Euclidean distance
+    return some heuristic estimate from node to goal
+
+// Hàm tính khoảng cách giữa hai nút liền kề
+distance(nodeA, nodeB)
+    // Tùy thuộc vào cách tính khoảng cách giữa các nút, ví dụ Euclidean distance hoặc chỉ đơn giản là 1 nếu là lưới
+    return actual distance between nodeA and nodeB

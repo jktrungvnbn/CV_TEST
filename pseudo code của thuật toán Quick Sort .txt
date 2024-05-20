@@ -1,0 +1,34 @@
+// Hàm chính của Quick Sort
+QuickSort(arr, low, high)
+    if low < high
+        // Phân chia mảng và tìm chỉ số pivot
+        pivotIndex = Partition(arr, low, high)
+        
+        // Đệ quy sắp xếp các phần mảng
+        QuickSort(arr, low, pivotIndex - 1) 
+  
+        QuickSort(arr, pivotIndex + 1, high) 
+
+
+// Hàm phân chia mảng và chọn pivot
+Partition(arr, low, high)
+    // Chọn phần tử cuối cùng làm pivot
+    pivot = arr[high]
+    
+    
+    i = low - 1
+    
+    for j = low to high - 1
+        if arr[j] <= pivot
+            i = i + 1
+            Swap(arr[i], arr[j]) 
+    
+     Swap(arr[i + 1], arr[high])
+    
+    return i + 1
+
+// Hàm đổi chỗ hai phần tử trong mảng
+Swap(a, b)
+    temp = a
+    a = b
+    b = temp
